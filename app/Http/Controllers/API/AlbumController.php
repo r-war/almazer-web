@@ -35,7 +35,7 @@ class AlbumController extends Controller
             'id'        => $article->id,
             'name'      => $article->name,
             'picture'   => asset($article->picture),
-            'pictures'  => getPicture($request->input('id'))
+            'pictures'  => $this->getPicture($request->input('id'))
         ];
         
         return response()->json(['success'=>$json], $this->successStatus);
