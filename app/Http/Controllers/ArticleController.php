@@ -71,7 +71,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         if($article){
-            unlink($article->picture);
+            //unlink($article->picture);
             $article->delete();
             Flash::success('Article deleted successfully.');
 
@@ -118,7 +118,7 @@ class ArticleController extends Controller
         $article->content    = $request->content;
 
         if($request->hasFile('picture')){
-            unlink($article->picture);
+            //unlink($article->picture);
             $file = $request->file('picture');
             $article->picture     = $file_path . $this->renamed($file->getClientOriginalName());
             $file->move(
