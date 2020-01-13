@@ -109,7 +109,7 @@ class AlbumPictureController extends Controller
         $album->description     = $request->description;
 
         if($request->hasFile('picture')){
-            unlink($album->picture);
+            //unlink($album->picture);
             $album->picture     = $file_path . $request->file('picture')->getClientOriginalName();
             $request->file('picture')->move(
                 $file_path, 
@@ -129,7 +129,7 @@ class AlbumPictureController extends Controller
         $album = albumPicture::find($id);
 
         if($album){
-            unlink($album->picture);
+            //unlink($album->picture);
             $album->delete();
             Flash::success('album deleted successfully.');
 
