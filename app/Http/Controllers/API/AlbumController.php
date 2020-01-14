@@ -21,7 +21,7 @@ class AlbumController extends Controller
             $json[] =[
                 'id'        => $article->id,
                 'name'      => $article->name,
-                'picture'   => asset($article->picture), 
+                'picture'   => secure_asset($article->picture), 
             ];
         }
 
@@ -34,7 +34,7 @@ class AlbumController extends Controller
         $json[] = [
             'id'        => $article->id,
             'name'      => $article->name,
-            'picture'   => asset($article->picture),
+            'picture'   => secure_asset($article->picture),
             'pictures'  => $this->getPicture($request->input('id'))
         ];
         
@@ -50,7 +50,7 @@ class AlbumController extends Controller
                 'album_id'      => $picture->album_id,
                 'name'          => $picture->name,
                 'descroption'   => $picture->description,
-                'picture'       => asset($picture->picture),
+                'picture'       => secure_asset($picture->picture),
                 'url'           => $picture->url,
 
             ];
@@ -68,7 +68,7 @@ class AlbumController extends Controller
                 'album_id'      => $picture->album_id,
                 'name'          => $picture->name,
                 'descroption'   => $picture->description,
-                'picture'       => asset($picture->picture),
+                'picture'       => secure_asset($picture->picture),
                 'url'           => $picture->url,
 
             ];

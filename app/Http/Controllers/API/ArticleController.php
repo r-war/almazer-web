@@ -22,7 +22,7 @@ class ArticleController extends Controller
                 'id'        => $article->id,
                 'date'      => $article->date,
                 'name'      => $article->name,
-                'picture'   => asset($article->picture),
+                'picture'   => secure_asset($article->picture),
                 'content'   => $article->content,
             ];
         }
@@ -45,7 +45,7 @@ class ArticleController extends Controller
                 'id'        => $articles->id,
                 'date'      => $articles->date,
                 'name'      => $articles->name,
-                'picture'   => asset($articles->picture),
+                'picture'   => secure_asset($articles->picture),
                 'content'   => $articles->content,
             ];
         //}
