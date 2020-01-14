@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Article;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use Validator;
 
 class ArticleController extends Controller
@@ -14,19 +15,35 @@ class ArticleController extends Controller
     public $successStatus = 200;
     
 
-    public function article(){
-        $articles = Article::all()->sortByDesc('date')->values();
+    public function article(Request $request): JsonResponse
+    {
+        $articles = Article::orderBy('date')
+            ->simplePaginate((int) $request->get('limit', 3));
 
-        foreach($articles as $article){
-            $json[]= [
-                'id'        => $article->id,
-                'date'      => $article->date,
-                'name'      => $article->name,
-                'picture'   => secure_asset($article->picture),
-                'content'   => $article->content,
-            ];
+        foreach ($articles->toArray()['data'] as $article) {
+            $data =[
+                'id'        => $article['id'],
+                'date'      => $article['date'],
+                'name'      => $article['name'],
+                'picture'   => secure_asset($article['picture']),
+                'content'   => $article['content'],
+                ];
         }
-        return response()->json(['success'=>$json], $this->successStatus);
+        $json= [
+            'data'              => $data,
+            'path'              => $articles->toArray()['path'],
+            'per_page'          => $articles->perPage(),
+            'current_page'      => $articles->currentPage(),
+            'first_page_url'    => $articles->toArray()['first_page_url'],
+            'next_page_url'     => $articles->toArray()['next_page_url'],
+            'per_page'          => $articles->toArray()['per_page'],
+            'prev_page_url'     => $articles->toArray()['prev_page_url'],
+            'from'              => $articles->toArray()['from'],
+            'to'                => $articles->toArray()['to']
+        ];
+        return response()
+            ->json(['success'=>$json], $this->successStatus)
+            ->withCallback($request->callback);
     }
 
     public function detail(Request $request){

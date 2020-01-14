@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+use App\Http\Resources\article;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,7 +27,12 @@ Route::post('search', 'UserController@search');
 //Route::get('article', 'UserController@article');
 
 // article
-Route::get('article', 'ArticleController@article');
+// Route::get('article', function () 
+//     {
+//         return new article( \App\Article::orderBy('date')->paginate(5));
+//     }
+// );
+Route::get('article','ArticleController@article');
 Route::post('article/detail', 'ArticleController@detail');
 
 //album
