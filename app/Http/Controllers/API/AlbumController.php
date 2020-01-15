@@ -17,7 +17,7 @@ class AlbumController extends Controller
 
     public function album(Request $request){
         $album = Album::orderBy('index')
-        ->simplePaginate((int) $request->get('limit', 8));
+        ->simplePaginate((int) $request->get('limit', 2));
         // "current_page": 1,
         // "first_page_url": "https://almazer-web.dev/api/album?page=1",
         // "from": 1,
@@ -80,7 +80,7 @@ class AlbumController extends Controller
                 'id'            => $picture->id,
                 'album_id'      => $picture->album_id,
                 'name'          => $picture->name,
-                'descroption'   => $picture->description,
+                'description'   => $picture->description,
                 'picture'       => secure_asset($picture->picture),
                 'url'           => $picture->url,
             ];
@@ -97,7 +97,7 @@ class AlbumController extends Controller
                 'id'            => $picture->id,
                 'album_id'      => $picture->album_id,
                 'name'          => $picture->name,
-                'descroption'   => $picture->description,
+                'description'   => $picture->description,
                 'picture'       => secure_asset($picture->picture),
                 'url'           => $picture->url,
 
