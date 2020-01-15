@@ -17,7 +17,7 @@ class AlbumController extends Controller
 
     public function album(Request $request){
         $album = Album::orderBy('index')
-        ->simplePaginate((int) $request->get('limit', 3));
+        ->simplePaginate((int) $request->get('limit', 8));
         // "current_page": 1,
         // "first_page_url": "https://almazer-web.dev/api/album?page=1",
         // "from": 1,
