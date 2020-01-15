@@ -21,7 +21,7 @@ class ArticleController extends Controller
             ->simplePaginate((int) $request->get('limit', 3));
 
         foreach ($articles->toArray()['data'] as $article) {
-            $data =[
+            $data[] =[
                 'id'        => $article['id'],
                 'date'      => $article['date'],
                 'name'      => $article['name'],

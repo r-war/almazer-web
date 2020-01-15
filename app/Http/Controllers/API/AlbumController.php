@@ -29,7 +29,7 @@ class AlbumController extends Controller
 
         //dump($album->toArray());
         foreach ($album->toArray()['data'] as $article) {
-            $data =[
+            $data[] =[
                     'id'        => $article['id'],
                     'name'      => $article['name'],
                     'picture'   => secure_asset($article['picture']), 
