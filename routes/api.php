@@ -18,30 +18,33 @@ use App\Http\Resources\article;
 //     return $request->user();
 // });
 
-// user
+/*** user ***/ 
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
-
 Route::post('search', 'UserController@search');
+Route::post('fcm', 'UserController@fcm');
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'UserController@details');
+
+});
 
 //Route::get('article', 'UserController@article');
 
-// article
+/*** article ***/
+Route::get('article','ArticleController@article');
 // Route::get('article', function () 
 //     {
 //         return new article( \App\Article::orderBy('date')->paginate(5));
 //     }
 // );
-Route::get('article','ArticleController@article');
 Route::post('article/detail', 'ArticleController@detail');
 
-//album
+/*** album ***/
 Route::get('album', 'AlbumController@album');
 Route::post('album/picture', 'AlbumController@pictures');
 Route::post('album/detail', 'AlbumController@detail');
 
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('details', 'UserController@details');
+/*** banner ***/
+Route::get('banner', 'BannerController@banner');
 
-});

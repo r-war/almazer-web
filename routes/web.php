@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('users', 'UserController');
 
+Route::resource('banner', 'BannerController');
+
 Route::resource('gallery', 'GalleryController');
 
 Route::resource('album', 'AlbumController');
@@ -26,6 +28,9 @@ Route::resource('album', 'AlbumController');
 Route::resource('album-picture', 'AlbumPictureController');
 
 Route::resource('article', 'ArticleController');
+
+Route::post( 'broadcast/send', 'BroadcastController@sendNotif' );
+Route::resource('broadcast', 'BroadcastController');
 
 Route::resource('list-users', 'VendorController');
 

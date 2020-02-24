@@ -28,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
+        Passport::routes(null, array('prefix' => 'api/oauth', 'middleware'  =>  array('auth:api', 'web', 'auth')));
         //
     }
 }

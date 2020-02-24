@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use App\Modles\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Flash;
 use Response;

@@ -15,7 +15,7 @@ class AlbumController extends Controller
     protected $aAlbum;
 
     public function index(){
-        $aAlbum = Album::all();
+        $aAlbum = Album::all()->sortBy('index');
         return view('backend.album.index',[
             'oAlbum' => $aAlbum
         ]);
@@ -34,6 +34,9 @@ class AlbumController extends Controller
 		# set validation rules
         $rules = [
 
+            'index' => [
+                'required'
+            ],
             'name' => [
                 'required'
             ],
@@ -101,6 +104,9 @@ class AlbumController extends Controller
 		# set validation rules
         $rules = [
 
+            'index' => [
+                'required'
+            ],
             'name' => [
                 'required'
             ],

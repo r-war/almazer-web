@@ -55,11 +55,12 @@ class UserController extends Controller
     /* Search user by license_plate */
     public function search(Request $request)
     {    
-        $query = strtoupper(trim(str_replace(" ", "",$request->input('search_query')) ));
+        $query = strtoupper(trim($request->input('search_query')) );
         
-        $user = User::select('name','number','license_plate')
-        ->where('license_plate', $query)
-        ->orWhere('number', 'like', "%$query%")
+        //str_pad($query, 3, '0', STR_PAD_LEFT);
+        
+        $user = User::search($query, null, true)
+        //->orWhere('number', 'like', "%$query%")
         ->get();
         
         //return $user;
@@ -67,6 +68,17 @@ class UserController extends Controller
             return response()->json(['success'=>$user], $this->successStatus);
         }else{
             return response()->json(['error'=>'Searching is not found'], 401);
+        }
+    }
+
+    public function fcm(Request $request){
+        $user =  User::findOrFail($request->id);
+
+        if($user)
+            $user->firebase_token = $request->token;
+
+        if($user->save()){
+            return response()->json(['success'=> 'added token', $this->successStatus]);
         }
     }
 

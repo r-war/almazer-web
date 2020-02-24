@@ -57,6 +57,7 @@ class User extends Authenticatable
         'size',
         'email_verified_at',
         'password',
+        'firebase_token'
     ];
 
     /**
@@ -78,7 +79,8 @@ class User extends Authenticatable
         'size' => 'string',
         'email_verified_at' => 'datetime',
         'password' => 'string',
-        'remember_token' => 'string'
+        'remember_token' => 'string',
+        'firebase_token' => 'string'
     ];
 
     /**
